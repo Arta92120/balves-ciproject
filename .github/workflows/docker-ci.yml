@@ -19,6 +19,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Analyze code with SonarCloud
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn verify sonar:sonar -DskipTests
+
       - name: Build with Maven
         run: mvn clean package
 
